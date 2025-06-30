@@ -1,8 +1,14 @@
 = Multi-Dimensional-Cube-Slicing
 :showtitle:
-:page-navtitle: First Entry
-:page-excerpt: Excerpt goes here.
+:page-navtitle: Multi-Dimensional-Cube-Slicing
+:page-excerpt: Definition of- and solution to cubeslicing puzzle.
 :page-root: ../../../
 
 == Puzzle Definition
-Imagine a stem:[d]-dimensional stem:[n^d] sized object. Two specific examples of such objects would be a chessboard with stem:[d=8, n=2] or a rubixcube with stem:[d=3, n=3]. The question is, what if you took a Katana and sliced a straight cut through one of these objects in such a way that you cut into as many squares/cubes as possible. How many could you cut through with the most optimal slice? For a chessboard the intuitive answer is probably 15.
+Imagine a stem:[d]-dimensional stem:[n^d] sized object. Two specific examples of such objects would be a chessboard with stem:[d=8, n=2] or a rubixcube with stem:[d=3, n=3]. The question is, what if you took a Katana and sliced a straight cut through one of these objects in such a way that you cut into as many squares/cubes as possible. How many could you cut through with the most optimal slice? For a chessboard the intuitive answer is probably 15 with a diagonal cut that is slightly offset.
+
+Picture
+
+I think we can redefine the question as:
+
+stem:[\max_{c, a_1, ... a_{d-1}} \int_{0}^{n}...\int_{0}^{n}\ceil{c + a_1\ceil{x_1}+...+a_{d-1}ceil{x_{d-1}}} - \floor{c + a_1\floor{x_1}+...+a_{d-1}floor{x_{d-1}}} dx_1...dx_{d-1}]
