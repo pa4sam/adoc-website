@@ -11,4 +11,7 @@ Picture
 
 I think we can redefine the question as:
 
-stem:[\max_{c, a_1, ... a_{d-1}} \int_{0}^{n}...\int_{0}^{n}\ceil{c + a_1\ceil{x_1}+...+a_{d-1}ceil{x_{d-1}}} - \floor{c + a_1\floor{x_1}+...+a_{d-1}floor{x_{d-1}}} dx_1...dx_{d-1}]
+stem:[\max_{c, a_1, ... a_{d-1}} \int_{0}^{n}...\int_{0}^{n}\min(\max(\ceil{c + a_1\ceil{x_1}+...+a_{d-1}ceil{x_{d-1}}}, 0),n) - \min(\max(\floor{c + a_1\floor{x_1}+...+a_{d-1}floor{x_{d-1}}}, 0),n) dx_1...dx_{d-1}]
+
+And I suspect that we can get rid of the stem:[\min(\max(...,n),0)] wrapping terms by setting sensible limits like:
+stem:[0<=c<1] because due to the regularity of a cube there is no point to moving the cut up and down more than 1 cube. Similarly, I think we can limit the angle of the cut to stem:[0<=a_1,...,a_{d_1}] as cutting down will at most cut one cube with stem:[c > 0] and stem:[a_1+...+a_{d_1}<=\frac{n-c}{n}] as cutting any steeper we will exit the cube at the top. That last limit is just an intuition though, I wouldn't know how to prove that that is indeed the case.
