@@ -3,6 +3,7 @@
 :page-navtitle: Multi-Dimensional-Cube-Slicing
 :page-excerpt: Definition of- and solution to cubeslicing puzzle.
 :page-root: ../../../
+:stem:
 
 === Puzzle Definition
 Imagine a stem:[d]-dimensional stem:[n^d] sized object. Two specific examples of such objects would be a chessboard with stem:[n=8, d=2] or a rubixcube with stem:[d=3, n=3]. The question is, what if you took a Katana and sliced a straight cut through one of these objects in such a way that you cut into as many squares/cubes as possible. How many could you cut through with the most optimal slice? For a chessboard the intuitive answer is probably 15 with a diagonal cut that is slightly offset.
@@ -13,8 +14,16 @@ I think we can redefine the question as there being a function stem:[g(n,d)] tha
 
 stem:[g(n,d)=\max_{c, a_1, ... a_{d-1}} \int_{0}^{n}...\int_{0}^{n}\min(\max(\ceil{c + a_1\ceil{x_1}+...+a_{d-1}ceil{x_{d-1}}}, 0),n) - \min(\max(\floor{c + a_1\floor{x_1}+...+a_{d-1}floor{x_{d-1}}}, 0),n) dx_1...dx_{d-1}]
 
-And I suspect that we can get rid of the stem:[\min(\max(...,n),0)] wrapping terms by setting sensible limits like:
-stem:[0<=c<1] because due to the regularity of a cube there is no point to moving the cut up and down more than 1 cube. Similarly, I think we can limit the angle of the cut to stem:[0<=a_1,...,a_{d_1}] as cutting down will at most cut one cube with stem:[c > 0] and stem:[a_1+...+a_{d_1}<=\frac{n-c}{n}] as cutting any steeper we will exit the cube at the top. That last limit is just an intuition though, I wouldn't know how to prove that that is indeed the case.
+And I suspect that we can get rid of the stem:[\min(\max(...,n),0)] wrapping terms by setting sensible limits. Taking the chessboard example a straight line entering the left side can only cut through the chessboard exiting on the right, top or bottom. But due to rotational and mirror symmetry the top and bottom are more or less equivalent. So if we pick stem:[c<=n] stem:[0<=a_1,...,a_{d_1}] as cutting down will at most cut one cube with stem:[c > 0] and stem:[a_1+...+a_{d_1}<=\frac{n-c}{n}] such that we never exit through the top, we can get rid of the stem:[min(...,n) term.
+
+stem:[0<=c<1] because due to the regularity of a cube there is no point to moving the cut up and down more than 1 cube. Similarly, I think we can limit the angle of the cut to  as cutting any steeper we will exit the cube at the top. That last limit is just an intuition though, I wouldn't know how to prove that that is indeed the case.
+So at least we can simplify to:
+
+[stem]
+++++
+g(n,d)=\max_{c, a_1, ... a_{d-1}} \int_{0}^{n}...\int_{0}^{n}\min(\ceil{c + a_1\ceil{x_1}+...+a_{d-1}ceil{x_{d-1}}},n) - \min(\floor{c + a_1\floor{x_1}+...+a_{d-1}floor{x_{d-1}}},n) dx_1...dx_{d-1}\
+with
+++++
 
 === 2D case
 So for stem:[d=2] things would work out as:
